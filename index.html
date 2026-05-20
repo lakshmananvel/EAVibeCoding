@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BOOST² Build Day — Vibe Code the Future of EA</title>
+<title>BOOST² Build Day — June 23, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Clash+Display:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
@@ -16,30 +14,12 @@
   --deep:   #090912;
   --panel:  #0d0d1a;
   --rim:    #1a1a2e;
-  --smoke:  #2a2a40;
   --mist:   #6a6a8a;
   --paper:  #e8e6f0;
   --white:  #f5f4ff;
-
-  /* neon palette */
   --lime:   #a8ff3e;
-  --cyan:   #00e5ff;
   --violet: #b44dff;
-  --pink:   #ff3ea8;
-  --amber:  #ffb83e;
-  --red:    #ff4444;
-
-  /* BOOST² element colours */
-  --c-vs:   #3ef5a8;   /* Value Stream */
-  --c-cap:  #4d8aff;   /* Capability */
-  --c-out:  #ffb83e;   /* Outcome/Ambition */
-  --c-tr:   #ff4444;   /* Trend */
-  --c-need: #b44dff;   /* Capability Need */
-  --c-app:  #00e5ff;   /* Application */
-  --c-road: #a8ff3e;   /* Roadmap */
-  --c-pp:   #ff3ea8;   /* People/Process */
-  --c-rel:  #ffffff;   /* Relations */
-  --c-ux:   #ffb83e;   /* UX */
+  --cyan:   #00e5ff;
 }
 
 html{scroll-behavior:smooth}
@@ -49,525 +29,349 @@ body{
   font-family:'Space Mono',monospace;
   font-size:14px;
   overflow-x:hidden;
-  cursor:none;
 }
 
-/* ── cursor ── */
-.cur{
-  width:14px;height:14px;
-  border:2px solid var(--lime);
-  border-radius:50%;
-  position:fixed;top:0;left:0;
-  pointer-events:none;z-index:9999;
-  transform:translate(-50%,-50%);
-  transition:width .18s,height .18s,border-color .18s,background .18s;
-}
-.cur.active{width:40px;height:40px;background:rgba(168,255,62,.08);border-color:var(--violet)}
-
-/* ── scanlines ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.08) 2px,rgba(0,0,0,.08) 4px);
-  pointer-events:none;z-index:900;
-}
-
-/* ── terminal type animation ── */
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-.blink{animation:blink 1s step-end infinite}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
-.reveal.on{opacity:1;transform:translateY(0)}
-
-/* ══ NAV ══ */
+/* ── NAV ── */
 nav{
   position:sticky;top:0;z-index:200;
-  background:rgba(4,4,10,.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(168,255,62,.15);
+  background:rgba(4,4,10,.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(168,255,62,.12);
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 48px;height:52px;
+  padding:0 48px;height:56px;
 }
 .nav-logo{
-  font-family:'Space Mono',monospace;
   font-weight:700;font-size:13px;
-  letter-spacing:.08em;
-  color:var(--lime);
+  letter-spacing:.08em;color:var(--lime);
   display:flex;align-items:center;gap:10px;
 }
-.nav-logo-badge{
+.nav-badge{
   background:var(--lime);color:var(--void);
   font-size:9px;padding:2px 7px;letter-spacing:.12em;font-weight:700;
 }
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{
-  color:var(--mist);font-size:11px;letter-spacing:.12em;
-  text-transform:uppercase;text-decoration:none;transition:color .2s;
-}
-.nav-links a:hover{color:var(--lime)}
 .nav-cta{
-  background:transparent;
-  border:1px solid var(--lime);
-  color:var(--lime);
-  padding:8px 20px;
+  background:var(--lime);color:var(--void);
+  padding:9px 22px;
   font-family:'Space Mono',monospace;
-  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  text-decoration:none;cursor:none;
-  transition:background .2s,color .2s;
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;
+  transition:opacity .2s;
 }
-.nav-cta:hover{background:var(--lime);color:var(--void)}
+.nav-cta:hover{opacity:.85}
 
-/* ══ HERO ══ */
+/* ── HERO ── */
 .hero{
   min-height:100vh;
-  background:var(--void);
-  display:grid;grid-template-rows:1fr auto;
   position:relative;overflow:hidden;
+  display:flex;align-items:center;
+  padding:80px 48px;
 }
 
-/* animated grid */
+/* grid bg */
 .hero-grid{
   position:absolute;inset:0;
   background-image:
-    linear-gradient(rgba(168,255,62,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(168,255,62,.04) 1px,transparent 1px);
-  background-size:48px 48px;
-  animation:gridScroll 20s linear infinite;
+    linear-gradient(rgba(168,255,62,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(168,255,62,.035) 1px,transparent 1px);
+  background-size:56px 56px;
+  animation:gridScroll 24s linear infinite;
 }
-@keyframes gridScroll{from{background-position:0 0}to{background-position:0 48px}}
+@keyframes gridScroll{from{background-position:0 0}to{background-position:0 56px}}
 
-/* glow orbs */
-.orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;opacity:.18;animation:orbDrift 14s ease-in-out infinite}
-.orb1{width:600px;height:600px;background:var(--violet);top:-200px;right:-100px;animation-delay:0s}
-.orb2{width:400px;height:400px;background:var(--lime);bottom:-100px;left:-100px;animation-delay:-5s}
-.orb3{width:300px;height:300px;background:var(--cyan);top:40%;left:40%;animation-delay:-9s;opacity:.1}
-@keyframes orbDrift{0%,100%{transform:translate(0,0)}33%{transform:translate(40px,-30px)}66%{transform:translate(-30px,40px)}}
+/* orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;animation:drift 16s ease-in-out infinite}
+.orb1{width:700px;height:700px;background:var(--violet);opacity:.12;top:-250px;right:-120px}
+.orb2{width:500px;height:500px;background:var(--lime);opacity:.08;bottom:-150px;left:-100px;animation-delay:-7s}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-25px)}}
 
-/* floating code snippets */
-.code-float{
-  position:absolute;font-family:'Space Mono',monospace;font-size:10px;
-  color:rgba(168,255,62,.18);line-height:1.6;white-space:pre;
-  pointer-events:none;animation:codeDrift 18s ease-in-out infinite;
-}
-@keyframes codeDrift{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-20px) rotate(var(--r,0deg))}}
+.hero-inner{position:relative;z-index:10;max-width:760px}
 
-.hero-content{
-  position:relative;z-index:10;
-  display:flex;flex-direction:column;
-  justify-content:center;
-  padding:80px 48px 40px;
-  max-width:1100px;
-}
-
-.hero-tag{
-  display:inline-flex;align-items:center;gap:12px;
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--lime);margin-bottom:32px;
-  animation:fadeUp .6s ease both;
+  color:var(--lime);margin-bottom:36px;
 }
-.tag-dot{width:7px;height:7px;background:var(--lime);border-radius:50%;animation:blink 1.2s step-end infinite}
-
-/* terminal prompt effect */
-.prompt-line{
-  font-size:12px;color:var(--lime);
-  font-family:'Space Mono',monospace;
-  margin-bottom:20px;
-  animation:fadeUp .6s .05s ease both;
-}
-.prompt-line .cmd{color:var(--cyan)}
-.prompt-line .arg{color:var(--violet)}
+.dot{width:7px;height:7px;background:var(--lime);border-radius:50%;animation:blink 1.4s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
 .hero-h1{
   font-family:'Space Mono',monospace;
   font-weight:700;
-  font-size:clamp(44px,7.5vw,100px);
-  line-height:.95;letter-spacing:-.01em;
-  animation:fadeUp .6s .1s ease both;
+  font-size:clamp(48px,8vw,110px);
+  line-height:.92;letter-spacing:-.02em;
+  margin-bottom:28px;
 }
 .hero-h1 .lime{color:var(--lime)}
 .hero-h1 .ghost{
   color:transparent;
-  -webkit-text-stroke:1px rgba(168,255,62,.3);
+  -webkit-text-stroke:1px rgba(168,255,62,.25);
 }
-.hero-h1 .italic{
+.hero-h1 em{
   font-family:'Instrument Serif',serif;
   font-style:italic;font-weight:400;
-  font-size:.72em;color:var(--mist);display:block;
+  font-size:.65em;color:var(--mist);
+  display:block;margin-top:8px;
 }
 
 .hero-sub{
-  margin-top:28px;max-width:600px;
-  font-size:13px;line-height:1.9;
-  color:#8a8aaa;
-  animation:fadeUp .6s .18s ease both;
+  font-size:15px;line-height:1.85;color:#8a8aaa;
+  max-width:560px;margin-bottom:48px;
 }
-.hero-sub .hi{color:var(--cyan);font-weight:700}
+.hero-sub strong{color:var(--white);font-weight:700}
 
-/* live integration status pills */
-.int-status{
-  display:flex;gap:12px;flex-wrap:wrap;margin-top:32px;
-  animation:fadeUp .6s .24s ease both;
+.hero-meta{
+  display:flex;gap:40px;margin-bottom:48px;flex-wrap:wrap;
 }
-.int-pill{
-  display:flex;align-items:center;gap:8px;
-  border:1px solid rgba(255,255,255,.08);
-  padding:6px 14px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  background:rgba(255,255,255,.02);
-  transition:border-color .2s;
-}
-.int-pill:hover{border-color:rgba(168,255,62,.4)}
-.int-pill-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);animation:blink 2s ease-in-out infinite}
-.int-pill-dot.amber{background:var(--amber);animation-delay:.5s}
-.int-pill-dot.cyan{background:var(--cyan);animation-delay:1s}
+.meta-item{display:flex;flex-direction:column;gap:4px}
+.meta-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mist)}
+.meta-val{font-size:14px;font-weight:700;color:var(--white);letter-spacing:.04em}
 
-.hero-cta{
-  display:flex;gap:20px;align-items:center;margin-top:44px;
-  animation:fadeUp .6s .3s ease both;
-}
+.hero-btns{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .btn-primary{
-  position:relative;
   background:var(--lime);color:var(--void);
-  padding:16px 44px;
+  padding:18px 48px;
   font-family:'Space Mono',monospace;font-weight:700;
   font-size:13px;letter-spacing:.08em;text-transform:uppercase;
-  text-decoration:none;cursor:none;
-  transition:transform .15s;
-  overflow:hidden;
+  text-decoration:none;
+  transition:transform .15s,box-shadow .15s;
+  animation:pulse 3s ease-in-out infinite;
 }
-.btn-primary::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.3) 50%,transparent 100%);
-  transform:translateX(-100%);transition:transform .4s;
-}
-.btn-primary:hover::before{transform:translateX(100%)}
-.btn-primary:hover{transform:translateY(-2px)}
-
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(168,255,62,.35)}50%{box-shadow:0 0 0 14px rgba(168,255,62,0)}}
+.btn-primary:hover{transform:translateY(-2px);animation:none;box-shadow:0 5px 0 #4a8a10}
 .btn-ghost{
-  color:var(--mist);font-size:11px;text-decoration:none;
+  color:var(--mist);font-size:12px;text-decoration:none;
   letter-spacing:.1em;text-transform:uppercase;
-  display:flex;align-items:center;gap:8px;
-  border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:2px;
-  transition:color .2s,border-color .2s;cursor:none;
+  border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:2px;
+  transition:color .2s,border-color .2s;
 }
 .btn-ghost:hover{color:var(--white);border-color:var(--white)}
 
 /* stat bar */
-.hero-stats{
+.stat-bar{
   position:relative;z-index:10;
-  display:grid;grid-template-columns:repeat(5,1fr);
+  display:grid;grid-template-columns:repeat(4,1fr);
   border-top:1px solid rgba(168,255,62,.1);
 }
-.hst{padding:24px 40px;border-right:1px solid rgba(255,255,255,.05)}
-.hst:last-child{border-right:none}
-.hst-n{font-weight:700;font-size:38px;color:var(--lime);display:block;line-height:1}
-.hst-l{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--mist);margin-top:4px;display:block}
+.stat{padding:28px 40px;border-right:1px solid rgba(255,255,255,.05)}
+.stat:last-child{border-right:none}
+.stat-n{font-weight:700;font-size:40px;color:var(--lime);display:block;line-height:1}
+.stat-l{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--mist);margin-top:5px;display:block}
 
-/* ── ticker ── */
-.ticker{background:var(--rim);padding:12px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(168,255,62,.1)}
-.tick-inner{display:inline-flex;animation:tick 28s linear infinite}
+/* ticker */
+.ticker{background:var(--rim);padding:13px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(168,255,62,.08)}
+.tick-inner{display:inline-flex;animation:tick 30s linear infinite}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.tick-item{display:inline-flex;align-items:center;gap:16px;padding:0 24px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-.tick-item.green{color:var(--lime)}
-.tick-item.cyan{color:var(--cyan)}
-.tick-item.violet{color:var(--violet)}
-.tick-sep{width:4px;height:4px;background:currentColor;border-radius:50%;flex-shrink:0}
+.tick-item{display:inline-flex;align-items:center;gap:16px;padding:0 28px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.tick-item.g{color:var(--lime)}
+.tick-item.c{color:var(--cyan)}
+.tick-item.v{color:var(--violet)}
+.tick-sep{width:4px;height:4px;background:currentColor;border-radius:50%}
 
-/* ══ SECTIONS ══ */
+/* ── SECTIONS ── */
 .section{padding:100px 48px}
-.s-dark{background:var(--void)}
 .s-deep{background:var(--deep)}
 .s-panel{background:var(--panel)}
+.s-void{background:var(--void)}
 
 .eyebrow{
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--lime);margin-bottom:40px;
   display:flex;align-items:center;gap:14px;
 }
-.eyebrow::after{content:'';width:40px;height:1px;background:var(--lime);opacity:.4}
+.eyebrow::after{content:'';width:36px;height:1px;background:var(--lime);opacity:.4}
 
 .s-h2{
   font-family:'Space Mono',monospace;font-weight:700;
-  font-size:clamp(36px,5vw,60px);letter-spacing:-.01em;line-height:1.05;
+  font-size:clamp(34px,5vw,58px);letter-spacing:-.01em;line-height:1.06;
+  margin-bottom:60px;
 }
 .s-h2 .dim{color:var(--mist)}
 .s-h2 .lime{color:var(--lime)}
-.s-h2 .cyan{color:var(--cyan)}
 
-/* ══ VIBE CODING SECTION ══ */
-.vibe-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;margin-top:64px}
-.vibe-text{font-size:13px;line-height:1.9;color:#8a8aaa}
-.vibe-text p+p{margin-top:16px}
-.vibe-text .hi{color:var(--cyan);font-weight:700}
-.vibe-text .lime{color:var(--lime);font-weight:700}
-.vibe-text .violet{color:var(--violet);font-weight:700}
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on{opacity:1;transform:translateY(0)}
 
-/* fake terminal */
-.terminal{
-  background:#050510;
-  border:1px solid rgba(168,255,62,.2);
-  font-family:'Space Mono',monospace;
-  font-size:11px;
-  position:relative;overflow:hidden;
-}
-.term-bar{
-  background:rgba(168,255,62,.06);
-  border-bottom:1px solid rgba(168,255,62,.1);
-  padding:10px 16px;
-  display:flex;align-items:center;gap:8px;
-  font-size:10px;color:var(--mist);letter-spacing:.08em;
-}
-.term-dots{display:flex;gap:6px}
-.term-dot{width:10px;height:10px;border-radius:50%}
-.term-body{padding:20px;line-height:1.7;max-height:340px;overflow:hidden}
-.term-line{display:flex;gap:10px;margin-bottom:4px}
-.t-prompt{color:var(--lime);flex-shrink:0}
-.t-cmd{color:var(--cyan)}
-.t-arg{color:var(--violet)}
-.t-str{color:var(--amber)}
-.t-out{color:rgba(255,255,255,.5);padding-left:20px}
-.t-ok{color:var(--lime);padding-left:20px}
-.t-err{color:var(--red);padding-left:20px}
-.t-dim{color:rgba(255,255,255,.2);padding-left:20px}
-.t-comment{color:var(--mist);padding-left:20px;font-style:italic}
+/* ── WHAT IS THIS ── */
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.what-text{font-size:14px;line-height:1.9;color:#8a8aaa}
+.what-text p+p{margin-top:18px}
+.what-text strong{color:var(--white)}
 
-/* ══ AI WORKFLOW PIPELINE ══ */
-.pipeline{
-  display:flex;flex-direction:column;gap:2px;
-  margin-top:56px;
-}
-.pipe-step{
-  display:grid;grid-template-columns:56px 1fr auto;
-  gap:24px;align-items:center;
-  background:var(--panel);
+.quote-block{
+  border-left:3px solid var(--lime);
   padding:24px 28px;
-  border-left:3px solid var(--step-color,var(--lime));
-  transition:background .2s;cursor:none;
+  background:rgba(168,255,62,.04);
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-size:20px;
+  line-height:1.55;
+  color:var(--paper);
 }
-.pipe-step:hover{background:rgba(168,255,62,.04)}
-.pipe-num{
-  font-weight:700;font-size:28px;
-  color:var(--step-color,var(--lime));line-height:1;
-}
-.pipe-body{}
-.pipe-title{font-weight:700;font-size:15px;letter-spacing:.02em;margin-bottom:4px;color:var(--white)}
-.pipe-desc{font-size:11px;color:var(--mist);line-height:1.7}
-.pipe-tool{
-  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
-  padding:5px 12px;border:1px solid var(--step-color,var(--lime));
-  color:var(--step-color,var(--lime));white-space:nowrap;
+.quote-block cite{
+  display:block;margin-top:16px;
+  font-family:'Space Mono',monospace;
+  font-style:normal;font-size:10px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mist);
 }
 
-/* ══ INTEGRATIONS ══ */
-.int-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:56px}
-.int-card{
-  background:var(--panel);padding:36px 32px;
-  border-top:2px solid var(--int-color,var(--cyan));
-  position:relative;overflow:hidden;cursor:none;
-  transition:background .2s;
+/* ── HOW IT WORKS ── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:0}
+.step{
+  background:var(--panel);padding:40px 32px;
+  border-top:2px solid transparent;
+  transition:border-color .25s,background .25s;
 }
-.int-card:hover{background:#0f0f1e}
-.int-card::after{
-  content:'STUB';position:absolute;top:16px;right:16px;
-  font-size:9px;letter-spacing:.18em;
-  background:rgba(168,255,62,.12);color:var(--lime);
-  padding:3px 8px;border:1px solid rgba(168,255,62,.3);
-}
-.int-logo{font-weight:700;font-size:18px;letter-spacing:.04em;color:var(--white);margin-bottom:6px}
-.int-type{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--int-color,var(--cyan));margin-bottom:16px}
-.int-desc{font-size:12px;color:var(--mist);line-height:1.8;margin-bottom:20px}
+.step:hover{border-top-color:var(--lime);background:#0f0f1e}
+.step-num{font-weight:700;font-size:48px;color:rgba(168,255,62,.15);line-height:1;margin-bottom:20px}
+.step-title{font-weight:700;font-size:17px;color:var(--white);margin-bottom:10px;letter-spacing:.02em}
+.step-desc{font-size:12px;color:var(--mist);line-height:1.85}
 
-/* mini code block inside int card */
-.code-mini{
-  background:#020208;
-  border:1px solid rgba(255,255,255,.06);
-  padding:14px 16px;
-  font-size:10px;line-height:1.7;
-  margin-top:16px;overflow-x:auto;
-}
-.cm-key{color:var(--violet)}
-.cm-str{color:var(--amber)}
-.cm-num{color:var(--cyan)}
-.cm-fn{color:var(--lime)}
-.cm-comment{color:rgba(255,255,255,.25);font-style:italic}
-
-.int-endpoints{margin-top:16px}
-.int-ep{
-  display:flex;align-items:center;gap:10px;
-  padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);
-  font-size:10px;
-}
-.ep-method{
-  font-weight:700;font-size:9px;letter-spacing:.08em;
-  padding:2px 7px;background:rgba(0,229,255,.1);color:var(--cyan);
-  flex-shrink:0;
-}
-.ep-method.get{background:rgba(58,245,168,.1);color:var(--c-vs)}
-.ep-method.post{background:rgba(180,77,255,.1);color:var(--violet)}
-.ep-path{color:var(--mist);font-family:'Space Mono',monospace}
-.ep-label{color:rgba(255,255,255,.3);margin-left:auto;font-size:9px}
-
-/* ══ TEAMS ══ */
-.teams-hdr{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;margin-bottom:56px}
-.teams-note{font-size:13px;line-height:1.9;color:#6a6a8a}
+/* ── TEAMS ── */
+.teams-intro{max-width:560px;font-size:14px;line-height:1.9;color:#8a8aaa;margin-bottom:56px}
 
 .teams-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
 .team-card{
-  background:var(--panel);padding:28px 26px;
-  display:grid;grid-template-columns:50px 1fr;gap:18px;
-  align-items:start;cursor:none;
-  position:relative;overflow:hidden;transition:background .2s;
-}
-.team-card::before{
-  content:'';position:absolute;inset:0 auto 0 0;
-  width:3px;background:var(--tc,var(--lime));
+  background:var(--panel);padding:30px 28px;
+  display:flex;gap:20px;align-items:flex-start;
+  position:relative;overflow:hidden;
+  transition:background .2s;
+  border-left:3px solid var(--tc,var(--lime));
 }
 .team-card:hover{background:#111122}
-.t-num{font-weight:700;font-size:32px;color:var(--tc,var(--lime));line-height:1}
-.t-info{}
-.t-name{font-weight:700;font-size:16px;letter-spacing:.02em;color:var(--white);margin-bottom:4px}
-.t-node{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--tc,var(--lime));margin-bottom:8px;opacity:.8}
-.t-desc{font-size:11px;color:var(--mist);line-height:1.7}
-.t-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.t-tag{font-size:9px;letter-spacing:.08em;padding:2px 8px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.3)}
+.t-num{font-weight:700;font-size:34px;color:var(--tc,var(--lime));line-height:1;flex-shrink:0;width:44px}
+.t-body{}
+.t-name{font-weight:700;font-size:15px;color:var(--white);margin-bottom:4px}
+.t-role{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--tc,var(--lime));opacity:.8}
 
-/* ══ SCHEDULE ══ */
-.sched-wrap{display:grid;grid-template-columns:220px 1fr;gap:72px;margin-top:64px;align-items:start}
-.sched-aside{}
-.sched-badge{
-  background:var(--lime);color:var(--void);
-  display:inline-block;font-weight:700;font-size:12px;
-  letter-spacing:.08em;padding:10px 18px;margin-bottom:20px;
-}
-.sched-aside p{font-size:12px;line-height:1.8;color:var(--mist)}
-
+/* ── SCHEDULE ── */
+.timeline{margin-top:0}
 .tl-item{
-  display:grid;grid-template-columns:80px 16px 1fr;
-  gap:0 20px;padding:22px 0;
+  display:grid;grid-template-columns:100px 12px 1fr;
+  gap:0 24px;padding:28px 0;
   border-bottom:1px solid rgba(255,255,255,.05);align-items:start;
 }
 .tl-item:first-child{border-top:1px solid rgba(255,255,255,.05)}
-.tl-time{font-size:11px;color:var(--lime);padding-top:2px;letter-spacing:.04em}
+.tl-time{font-size:12px;color:var(--lime);padding-top:3px;letter-spacing:.04em;font-weight:700}
 .tl-dot{
-  width:10px;height:10px;border:2px solid var(--lime);border-radius:50%;
+  width:12px;height:12px;border:2px solid var(--lime);border-radius:50%;
   margin-top:3px;flex-shrink:0;position:relative;
 }
 .tl-dot::after{
-  content:'';position:absolute;top:8px;left:3px;
-  width:1px;height:50px;background:rgba(168,255,62,.1);
+  content:'';position:absolute;top:10px;left:3px;
+  width:1px;height:60px;background:rgba(168,255,62,.1);
 }
 .tl-item:last-child .tl-dot::after{display:none}
-.tl-phase{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:3px}
-.tl-title{font-weight:700;font-size:18px;letter-spacing:.01em;color:var(--white);margin-bottom:6px}
-.tl-desc{font-size:11px;color:var(--mist);line-height:1.7}
-.tl-tag{
-  display:inline-block;margin-top:8px;font-size:9px;letter-spacing:.1em;text-transform:uppercase;
-  padding:3px 10px;background:rgba(168,255,62,.08);color:var(--lime);
+.tl-phase{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--mist);margin-bottom:4px}
+.tl-title{font-weight:700;font-size:20px;color:var(--white);margin-bottom:8px}
+.tl-desc{font-size:12px;color:var(--mist);line-height:1.75;max-width:580px}
+.tl-out{
+  display:inline-block;margin-top:10px;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 12px;background:rgba(168,255,62,.08);color:var(--lime);
   border:1px solid rgba(168,255,62,.2);
 }
-.tl-tools{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.tl-tool{
-  font-size:9px;letter-spacing:.08em;padding:2px 8px;
-  border:1px solid rgba(0,229,255,.2);color:var(--cyan);
-}
 
-/* ══ WHY JOIN ══ */
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
+/* ── WHY JOIN ── */
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
 .why-card{
-  background:var(--panel);padding:36px 28px;
+  background:var(--panel);padding:40px 30px;
   border-top:1px solid rgba(255,255,255,.06);
-  transition:border-top-color .2s;cursor:none;
+  transition:border-top-color .2s;
 }
 .why-card:hover{border-top-color:var(--lime)}
-.why-icon{font-size:22px;margin-bottom:14px}
-.why-title{font-weight:700;font-size:16px;letter-spacing:.02em;margin-bottom:10px;color:var(--white)}
-.why-body{font-size:12px;color:var(--mist);line-height:1.8}
+.why-icon{font-size:26px;margin-bottom:16px}
+.why-title{font-weight:700;font-size:16px;color:var(--white);margin-bottom:10px}
+.why-body{font-size:12px;color:var(--mist);line-height:1.85}
 
-/* ══ CTA ══ */
+/* ── CTA ── */
 .cta-section{
-  background:var(--void);padding:120px 48px;
-  text-align:center;position:relative;overflow:hidden;
+  padding:120px 48px;text-align:center;
+  position:relative;overflow:hidden;
 }
 .cta-bg{
   position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(168,255,62,.06) 0%,transparent 70%);
+  background:radial-gradient(ellipse 65% 55% at 50% 50%,rgba(168,255,62,.06),transparent 70%);
 }
 .cta-section .eyebrow{justify-content:center}
-.cta-section .eyebrow::after{display:none}
-.cta-section .eyebrow::before{content:'';width:40px;height:1px;background:var(--lime);opacity:.4}
-
+.cta-section .eyebrow::after,.cta-section .eyebrow::before{content:'';width:36px;height:1px;background:var(--lime);opacity:.4}
 .cta-h2{
   font-family:'Space Mono',monospace;font-weight:700;
-  font-size:clamp(40px,7vw,88px);line-height:.95;
+  font-size:clamp(40px,7vw,86px);line-height:.93;
   letter-spacing:-.01em;color:var(--white);margin:28px 0;position:relative;
 }
 .cta-lime{color:var(--lime);display:block}
-.cta-mist{color:var(--mist);font-weight:400;font-size:.7em;display:block;font-family:'Instrument Serif',serif;font-style:italic}
-.cta-sub{font-size:13px;color:var(--mist);max-width:500px;margin:0 auto 44px;line-height:1.9;position:relative}
+.cta-italic{
+  font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;
+  font-size:.68em;color:var(--mist);display:block;
+}
+.cta-sub{
+  font-size:14px;color:var(--mist);
+  max-width:480px;margin:0 auto 48px;line-height:1.9;position:relative;
+}
 .cta-btns{display:flex;justify-content:center;gap:16px;position:relative;flex-wrap:wrap}
-
 .btn-cta{
   background:var(--lime);color:var(--void);
-  padding:18px 52px;font-family:'Space Mono',monospace;
+  padding:18px 54px;font-family:'Space Mono',monospace;
   font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;
-  text-decoration:none;cursor:none;
-  transition:transform .15s,box-shadow .15s;
-  animation:ctaPulse 3s ease-in-out infinite;
+  text-decoration:none;
+  animation:pulse 3s ease-in-out infinite;
+  transition:transform .15s;
 }
-@keyframes ctaPulse{0%,100%{box-shadow:0 0 0 0 rgba(168,255,62,.4)}50%{box-shadow:0 0 0 16px rgba(168,255,62,0)}}
-.btn-cta:hover{transform:translateY(-3px);box-shadow:0 6px 0 #4a8a10 !important;animation:none}
-
+.btn-cta:hover{transform:translateY(-2px);animation:none}
 .btn-cta-ghost{
   border:1px solid rgba(168,255,62,.4);color:var(--lime);
-  padding:18px 36px;font-family:'Space Mono',monospace;
+  padding:18px 38px;font-family:'Space Mono',monospace;
   font-weight:700;font-size:14px;letter-spacing:.08em;text-transform:uppercase;
-  text-decoration:none;cursor:none;
-  transition:background .2s,border-color .2s;
+  text-decoration:none;transition:background .2s,border-color .2s;
 }
 .btn-cta-ghost:hover{background:rgba(168,255,62,.08);border-color:var(--lime)}
 
+.contact-line{
+  margin-top:44px;position:relative;
+  font-size:11px;color:#2a2a40;letter-spacing:.08em;
+}
+.contact-line a{color:var(--mist);text-decoration:none;transition:color .2s}
+.contact-line a:hover{color:var(--lime)}
+
 footer{
   background:#020208;border-top:1px solid rgba(255,255,255,.05);
-  padding:28px 48px;display:flex;justify-content:space-between;align-items:center;
+  padding:28px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
   font-size:10px;color:var(--mist);letter-spacing:.08em;
 }
 .footer-logo{font-weight:700;font-size:14px;color:var(--lime)}
+
+/* responsive */
+@media(max-width:900px){
+  nav{padding:0 24px}
+  .hero{padding:80px 24px}
+  .section{padding:72px 24px}
+  .stat-bar{grid-template-columns:repeat(2,1fr)}
+  .what-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .teams-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  footer{padding:24px}
+}
+@media(max-width:600px){
+  .hero-meta{gap:24px}
+  .why-grid{grid-template-columns:1fr}
+  .stat-bar{grid-template-columns:1fr 1fr}
+  .stat{padding:20px 24px}
+  .cta-section{padding:80px 24px}
+}
 </style>
 </head>
 <body>
-
-<div class="cur" id="cur"></div>
-
-<!-- floating code snippets bg decoration -->
-<div class="code-float" style="top:18%;right:5%;--r:-3deg;animation-delay:0s">
-claude code --prompt "generate CMDB connector"
-// ✓ ServiceNow stub created
-// ✓ entity mapping applied
-// ✓ 47 tests passing</div>
-<div class="code-float" style="top:55%;right:2%;--r:2deg;animation-delay:-6s">
-const capNeed = await boost2.find({
-  type: "CapabilityNeed",
-  status: "open"
-});</div>
-<div class="code-float" style="top:80%;left:2%;--r:-2deg;animation-delay:-11s">
-✓ ServiceNow CMDB → synced
-✓ Jira Align → epics mapped
-✓ BOOST² graph → published</div>
 
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
     BOOST² BUILD DAY
-    <span class="nav-logo-badge">VIBE EDITION</span>
+    <span class="nav-badge">JUNE 23</span>
   </div>
-  <ul class="nav-links">
-    <li><a href="#vibe">How We Build</a></li>
-    <li><a href="#integrations">Integrations</a></li>
-    <li><a href="#teams">Teams</a></li>
-    <li><a href="#schedule">Schedule</a></li>
-    <li><a href="#register">Register</a></li>
-  </ul>
-  <a href="#register" class="nav-cta">→ Join Now</a>
+  <a href="#register" class="nav-cta">Join the Event →</a>
 </nav>
 
 <!-- HERO -->
@@ -575,572 +379,345 @@ const capNeed = await boost2.find({
   <div class="hero-grid"></div>
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
-  <div class="orb orb3"></div>
 
-  <div class="hero-content">
-    <div class="hero-tag"><span class="tag-dot"></span>National Grid IT · June 23, 2025</div>
-
-    <div class="prompt-line">
-      <span style="color:var(--mist)">~/ea-hackathon</span>
-      <span style="color:var(--lime)"> $ </span>
-      <span class="cmd">claude code</span>
-      <span class="arg"> --build "future-of-ea"</span>
-      <span class="blink" style="color:var(--lime)">█</span>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      National Grid IT &nbsp;·&nbsp; Enterprise Architecture
     </div>
 
     <h1 class="hero-h1">
-      VIBE CODE<br>
-      <span class="lime">ENTERPRISE</span><br>
-      <span class="ghost">ARCHITECTURE</span>
-      <span class="italic">from strategy to system, in a day.</span>
+      ARCHITECT<br>
+      <span class="lime">THE</span><br>
+      <span class="ghost">UNKNOWN</span>
+      <em>build the future of EA in a single day.</em>
     </h1>
 
     <p class="hero-sub">
-      No boilerplate. No blockers. Just <span class="hi">Claude Code</span> generating, integrating, testing, and publishing — while your team thinks at the architecture level.
-      We're building a live BOOST² EA tool with real <span class="hi">ServiceNow CMDB</span> and <span class="hi">SPM / Jira Align</span> integrations. Vibe coding at enterprise scale.
+      50 architects and engineers. One day. One mission.<br>
+      We're building a <strong>living Enterprise Architecture tool</strong> for National Grid IT — with real data, real connections, and AI as our pair programmer.
     </p>
 
-    <div class="int-status">
-      <div class="int-pill"><span class="int-pill-dot"></span>ServiceNow CMDB — stub ready</div>
-      <div class="int-pill"><span class="int-pill-dot amber"></span>ServiceNow SPM — stub ready</div>
-      <div class="int-pill"><span class="int-pill-dot cyan"></span>Jira Align — stub ready</div>
-      <div class="int-pill"><span class="int-pill-dot"></span>BOOST² graph API — live</div>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Date</span>
+        <span class="meta-val">Tue, June 23 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Time</span>
+        <span class="meta-val">6:00 AM – 3:00 PM EST</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Participants</span>
+        <span class="meta-val">50 people</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Format</span>
+        <span class="meta-val">AI-first build</span>
+      </div>
     </div>
 
-    <div class="hero-cta">
-      <a href="#register" class="btn-primary">Claim Your Spot</a>
-      <a href="#vibe" class="btn-ghost">See how we build it</a>
+    <div class="hero-btns">
+      <a href="#register" class="btn-primary">Reserve Your Spot</a>
+      <a href="#what" class="btn-ghost">Learn More ↓</a>
     </div>
-  </div>
-
-  <div class="hero-stats">
-    <div class="hst"><span class="hst-n">7</span><span class="hst-l">Hours to ship</span></div>
-    <div class="hst"><span class="hst-n">50</span><span class="hst-l">Participants</span></div>
-    <div class="hst"><span class="hst-n">10</span><span class="hst-l">Teams × 5</span></div>
-    <div class="hst"><span class="hst-n">3</span><span class="hst-l">Live integrations</span></div>
-    <div class="hst"><span class="hst-n">∞</span><span class="hst-l">Claude tokens</span></div>
   </div>
 </section>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat"><span class="stat-n">8</span><span class="stat-l">Hours to ship</span></div>
+  <div class="stat"><span class="stat-n">50</span><span class="stat-l">Participants</span></div>
+  <div class="stat"><span class="stat-n">1</span><span class="stat-l">Day to change EA</span></div>
+  <div class="stat"><span class="stat-n">∞</span><span class="stat-l">Claude tokens</span></div>
+</div>
 
 <!-- TICKER -->
 <div class="ticker">
-  <div class="tick-inner">
-    <span class="tick-item green"><span class="tick-sep"></span>Claude Code</span>
-    <span class="tick-item"><span class="tick-sep"></span>Vibe Coding</span>
-    <span class="tick-item cyan"><span class="tick-sep"></span>ServiceNow CMDB</span>
-    <span class="tick-item"><span class="tick-sep"></span>ServiceNow SPM</span>
-    <span class="tick-item violet"><span class="tick-sep"></span>Jira Align</span>
-    <span class="tick-item"><span class="tick-sep"></span>BOOST² Metamodel</span>
-    <span class="tick-item green"><span class="tick-sep"></span>Value Streams</span>
-    <span class="tick-item"><span class="tick-sep"></span>Capability Needs</span>
-    <span class="tick-item cyan"><span class="tick-sep"></span>AI-Generated Tests</span>
-    <span class="tick-item"><span class="tick-sep"></span>Auto-Published</span>
-    <span class="tick-item violet"><span class="tick-sep"></span>June 23 · 8AM–4PM EST</span>
-    <span class="tick-item green"><span class="tick-sep"></span>Claude Code</span>
-    <span class="tick-item"><span class="tick-sep"></span>Vibe Coding</span>
-    <span class="tick-item cyan"><span class="tick-sep"></span>ServiceNow CMDB</span>
-    <span class="tick-item"><span class="tick-sep"></span>ServiceNow SPM</span>
-    <span class="tick-item violet"><span class="tick-sep"></span>Jira Align</span>
-    <span class="tick-item"><span class="tick-sep"></span>BOOST² Metamodel</span>
-    <span class="tick-item green"><span class="tick-sep"></span>Value Streams</span>
-    <span class="tick-item"><span class="tick-sep"></span>Capability Needs</span>
-    <span class="tick-item cyan"><span class="tick-sep"></span>AI-Generated Tests</span>
-    <span class="tick-item"><span class="tick-sep"></span>Auto-Published</span>
-    <span class="tick-item violet"><span class="tick-sep"></span>June 23 · 8AM–4PM EST</span>
+  <div class="tick-inner" aria-hidden="true">
+    <span class="tick-item g">Value Streams<span class="tick-sep"></span></span>
+    <span class="tick-item">Business Capabilities<span class="tick-sep"></span></span>
+    <span class="tick-item c">Strategic Outcomes<span class="tick-sep"></span></span>
+    <span class="tick-item">Trends<span class="tick-sep"></span></span>
+    <span class="tick-item v">Capability Needs<span class="tick-sep"></span></span>
+    <span class="tick-item">Application Portfolio<span class="tick-sep"></span></span>
+    <span class="tick-item g">Roadmap & Initiatives<span class="tick-sep"></span></span>
+    <span class="tick-item">People & Process<span class="tick-sep"></span></span>
+    <span class="tick-item c">Graph Engine<span class="tick-sep"></span></span>
+    <span class="tick-item">Visualisation & UX<span class="tick-sep"></span></span>
+    <span class="tick-item g">Value Streams<span class="tick-sep"></span></span>
+    <span class="tick-item">Business Capabilities<span class="tick-sep"></span></span>
+    <span class="tick-item c">Strategic Outcomes<span class="tick-sep"></span></span>
+    <span class="tick-item">Trends<span class="tick-sep"></span></span>
+    <span class="tick-item v">Capability Needs<span class="tick-sep"></span></span>
+    <span class="tick-item">Application Portfolio<span class="tick-sep"></span></span>
+    <span class="tick-item g">Roadmap & Initiatives<span class="tick-sep"></span></span>
+    <span class="tick-item">People & Process<span class="tick-sep"></span></span>
+    <span class="tick-item c">Graph Engine<span class="tick-sep"></span></span>
+    <span class="tick-item">Visualisation & UX<span class="tick-sep"></span></span>
   </div>
 </div>
 
-<!-- VIBE CODING -->
-<section class="section s-deep" id="vibe">
-  <div class="eyebrow">How we build</div>
-  <h2 class="s-h2 reveal">This isn't a hackathon.<br><span class="lime">It's vibe coding</span><br><span class="dim">at enterprise scale.</span></h2>
+<!-- WHAT IS THIS -->
+<section class="section s-deep" id="what">
+  <div class="eyebrow">The opportunity</div>
+  <h2 class="s-h2 reveal">Enterprise Architecture<br><span class="dim">is ready for</span><br><span class="lime">its moment.</span></h2>
 
-  <div class="vibe-grid reveal">
-    <div class="vibe-text">
-      <p>Forget scaffolding boilerplate for hours. Every team has <span class="lime">Claude Code</span> as their AI pair programmer — generating connectors, writing integration logic, scaffolding tests, and pushing to the shared repo, all from a single natural-language prompt.</p>
-      <p>The model knows your intent. You describe <span class="hi">"a ServiceNow CMDB connector that maps Configuration Items to BOOST² Business & Technology Capability entities"</span> — and the code appears. You review, steer, and ship. That's vibe coding.</p>
-      <p>Teams use <span class="violet">Claude Code in the terminal</span>, the VS Code extension, or the Slack bot — whatever fits their flow. The AI handles the mechanical translation from architecture thinking to working code, so humans can stay at the level of <em>decisions</em>, not syntax.</p>
-      <p>By the end of the day, the integration tests are AI-generated, the stubs are validated against live sandbox APIs, and the whole BOOST² tool is published to a shared environment — automatically.</p>
+  <div class="what-grid reveal">
+    <div class="what-text">
+      <p>National Grid IT is driving one of the most exciting transformations in the company's history — decarbonisation, grid modernisation, and AI-enabled operations, all moving forward together.</p>
+      <p>Enterprise Architecture is the discipline that makes sense of it all — connecting strategy to systems, decisions to outcomes. <strong>And now we have the tools to do it at full scale.</strong></p>
+      <p>BOOST² Build Day brings together 50 of the best minds in National Grid IT to build a living, connected EA tool in a single day — making our architecture visible, navigable, and actionable for everyone.</p>
+      <p>The strongest modules built on June 23rd go directly into the <strong>official EA tooling roadmap</strong>.</p>
     </div>
-
-    <div class="terminal">
-      <div class="term-bar">
-        <div class="term-dots">
-          <div class="term-dot" style="background:#ff5f57"></div>
-          <div class="term-dot" style="background:#febc2e"></div>
-          <div class="term-dot" style="background:#28c840"></div>
-        </div>
-        <span>claude-code — boost2-hackathon</span>
-      </div>
-      <div class="term-body">
-        <div class="term-line"><span class="t-prompt">$</span><span class="t-cmd">claude code</span><span class="t-arg"> "create ServiceNow CMDB stub connector for BOOST2 Capability entity"</span></div>
-        <div class="t-comment">// Generating connector...</div>
-        <div class="t-ok">✓ Created: src/integrations/servicenow-cmdb.ts</div>
-        <div class="t-ok">✓ Entity mapping: CI → BusinessTechCapability</div>
-        <div class="t-ok">✓ REST client with OAuth2 configured</div>
-        <div class="t-ok">✓ Rate limiting + retry logic added</div>
-        <div style="height:8px"></div>
-        <div class="term-line"><span class="t-prompt">$</span><span class="t-cmd">claude code</span><span class="t-arg"> "write integration tests for the CMDB connector"</span></div>
-        <div class="t-ok">✓ 23 test cases generated</div>
-        <div class="t-ok">✓ Mock sandbox wired up</div>
-        <div class="t-dim">  Running tests...</div>
-        <div class="t-ok">✓ 23/23 passing (1.2s)</div>
-        <div style="height:8px"></div>
-        <div class="term-line"><span class="t-prompt">$</span><span class="t-cmd">claude code</span><span class="t-arg"> "validate against ServiceNow dev instance and publish"</span></div>
-        <div class="t-ok">✓ Sandbox validation passed</div>
-        <div class="t-ok">✓ API contract matches BOOST² schema</div>
-        <div class="t-ok">✓ Deployed to: ea-hack.nationalgrid.internal</div>
-        <div style="height:8px"></div>
-        <div class="term-line"><span class="t-prompt">$</span><span style="color:var(--lime)">█</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- AI Pipeline -->
-  <div style="margin-top:80px">
-    <div class="eyebrow" style="margin-bottom:32px">The AI-assisted build pipeline</div>
-    <div class="pipeline reveal">
-      <div class="pipe-step" style="--step-color:var(--violet)">
-        <div class="pipe-num">01</div>
-        <div class="pipe-body">
-          <div class="pipe-title">Describe in plain language</div>
-          <div class="pipe-desc">Teams prompt Claude Code with architecture intent — "map ServiceNow CIs to BOOST² capabilities with bi-directional sync". No boilerplate, no setup. Just intent.</div>
-        </div>
-        <div class="pipe-tool">Claude Code</div>
-      </div>
-      <div class="pipe-step" style="--step-color:var(--cyan)">
-        <div class="pipe-num">02</div>
-        <div class="pipe-body">
-          <div class="pipe-title">AI generates the integration code</div>
-          <div class="pipe-desc">Claude Code writes the connector, REST client, entity mapper, error handling, and type definitions — fully typed TypeScript in seconds. Teams review and steer via follow-up prompts.</div>
-        </div>
-        <div class="pipe-tool">Claude Sonnet 4.6</div>
-      </div>
-      <div class="pipe-step" style="--step-color:var(--lime)">
-        <div class="pipe-num">03</div>
-        <div class="pipe-body">
-          <div class="pipe-title">AI writes and runs the tests</div>
-          <div class="pipe-desc">"Write integration tests for this connector against the ServiceNow sandbox" — Claude generates test cases, wires up mocks, runs them, and reports failures with fix suggestions inline.</div>
-        </div>
-        <div class="pipe-tool">Claude Code + Vitest</div>
-      </div>
-      <div class="pipe-step" style="--step-color:var(--amber)">
-        <div class="pipe-num">04</div>
-        <div class="pipe-body">
-          <div class="pipe-title">Validate against live sandboxes</div>
-          <div class="pipe-desc">Stubs are validated against ServiceNow dev instances and Jira Align sandboxes. Claude Code catches schema drift, missing fields, and contract violations before integration.</div>
-        </div>
-        <div class="pipe-tool">API Sandbox + Claude</div>
-      </div>
-      <div class="pipe-step" style="--step-color:var(--pink)">
-        <div class="pipe-num">05</div>
-        <div class="pipe-body">
-          <div class="pipe-title">Merge, integrate & publish</div>
-          <div class="pipe-desc">Team 09 (Relationship Engine) merges all modules. Claude Code reviews the combined diff for BOOST² schema consistency. One command publishes the full tool to the shared environment.</div>
-        </div>
-        <div class="pipe-tool">Claude Code + CI/CD</div>
-      </div>
+    <div class="quote-block">
+      "Stop waiting for the perfect tool.<br>Build it yourself."
+      <cite>BOOST² Build Day — Architect the Unknown</cite>
     </div>
   </div>
 </section>
 
-<!-- INTEGRATIONS -->
-<section class="section s-panel" id="integrations">
-  <div class="eyebrow">Stub integrations</div>
-  <h2 class="s-h2 reveal">Three live stubs.<br><span class="cyan">Real APIs.</span><br><span class="dim">Generated by Claude.</span></h2>
-  <p class="reveal" style="margin-top:20px;font-size:13px;color:var(--mist);max-width:600px;line-height:1.9">Every integration starts as a Claude-generated stub on day one. Teams prompt their way from stub to working connector using the BOOST² entity schema as the contract. Sandbox credentials are pre-provisioned.</p>
+<!-- HOW IT WORKS -->
+<section class="section s-panel" id="how">
+  <div class="eyebrow">How we build</div>
+  <h2 class="s-h2 reveal">AI as your<br><span class="lime">pair programmer.</span></h2>
 
-  <div class="int-grid reveal">
-
-    <!-- ServiceNow CMDB -->
-    <div class="int-card" style="--int-color:#81b4e6">
-      <div class="int-logo">ServiceNow CMDB</div>
-      <div class="int-type">Configuration Management · BOOST² Capabilities + Applications</div>
-      <div class="int-desc">Maps ServiceNow Configuration Items (CIs) to BOOST² Business & Technology Capability entities and Technology/Application nodes. Enables live sync of your application portfolio and infrastructure into the EA tool — dispositions (Enhance/Maintain/Retire/New) included.</div>
-
-      <div class="code-mini">
-        <div><span class="cm-comment">// Claude-generated stub — Team 02 & 06 own this</span></div>
-        <div><span class="cm-fn">export async function</span> <span style="color:var(--cyan)">syncCMDBCapabilities</span>() {</div>
-        <div>&nbsp;&nbsp;<span class="cm-key">const</span> client = <span class="cm-fn">new</span> ServiceNowClient({</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;instance: <span class="cm-str">'nationalgrid.service-now.com'</span>,</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;auth: <span class="cm-fn">oauthToken</span>(process.env.SN_TOKEN)</div>
-        <div>&nbsp;&nbsp;});</div>
-        <div>&nbsp;&nbsp;<span class="cm-key">const</span> cis = <span class="cm-key">await</span> client.table(<span class="cm-str">'cmdb_ci_appl'</span>).query({</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;fields: [<span class="cm-str">'name'</span>,<span class="cm-str">'u_capability_ref'</span>,<span class="cm-str">'u_disposition'</span>]</div>
-        <div>&nbsp;&nbsp;});</div>
-        <div>&nbsp;&nbsp;<span class="cm-key">return</span> cis.<span class="cm-fn">map</span>(ci => <span class="cm-fn">toBoost2Entity</span>(ci, <span class="cm-str">'Application'</span>));</div>
-        <div>}</div>
-      </div>
-
-      <div class="int-endpoints">
-        <div class="int-ep"><span class="ep-method get">GET</span><span class="ep-path">/api/now/table/cmdb_ci_appl</span><span class="ep-label">Application CIs</span></div>
-        <div class="int-ep"><span class="ep-method get">GET</span><span class="ep-path">/api/now/table/cmdb_ci_service</span><span class="ep-label">Business Services → Capabilities</span></div>
-        <div class="int-ep"><span class="ep-method post">POST</span><span class="ep-path">/api/now/table/u_ea_capability</span><span class="ep-label">Write back BOOST² metadata</span></div>
-      </div>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-title">Describe your intent</div>
+      <div class="step-desc">Tell Claude Code what you want to build in plain language. No boilerplate, no setup. Just describe the architecture outcome you're after.</div>
     </div>
-
-    <!-- ServiceNow SPM -->
-    <div class="int-card" style="--int-color:#6ef0c0">
-      <div class="int-logo">ServiceNow SPM</div>
-      <div class="int-type">Strategic Portfolio Mgmt · BOOST² Roadmap + Capability Needs</div>
-      <div class="int-desc">Pulls Demands, Epics, and Portfolio items from ServiceNow Strategic Portfolio Management and maps them to BOOST² Project/Program/Initiative nodes and Capability Needs. Closing a Capability Need in SPM reflects instantly in the EA tool's gap tracker.</div>
-
-      <div class="code-mini">
-        <div><span class="cm-comment">// Claude-generated stub — Team 07 owns this</span></div>
-        <div><span class="cm-fn">export async function</span> <span style="color:var(--cyan)">syncSPMInitiatives</span>() {</div>
-        <div>&nbsp;&nbsp;<span class="cm-key">const</span> demands = <span class="cm-key">await</span> spmClient.<span class="cm-fn">getDemands</span>({</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;state: [<span class="cm-str">'Approved'</span>, <span class="cm-str">'In Progress'</span>],</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;fields: [<span class="cm-str">'number'</span>,<span class="cm-str">'short_description'</span>,</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cm-str">'u_capability_need_ref'</span>,<span class="cm-str">'planned_start_date'</span>]</div>
-        <div>&nbsp;&nbsp;});</div>
-        <div>&nbsp;&nbsp;<span class="cm-key">return</span> demands.<span class="cm-fn">map</span>(d => ({</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;type: <span class="cm-str">'Initiative'</span>,</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;closesCapabilityNeed: d.u_capability_need_ref,</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;boost2Id: <span class="cm-fn">uuid</span>(d.number)</div>
-        <div>&nbsp;&nbsp;}));</div>
-        <div>}</div>
-      </div>
-
-      <div class="int-endpoints">
-        <div class="int-ep"><span class="ep-method get">GET</span><span class="ep-path">/api/sn_spm/demand</span><span class="ep-label">Demands → Initiatives</span></div>
-        <div class="int-ep"><span class="ep-method get">GET</span><span class="ep-path">/api/sn_spm/portfolio_item</span><span class="ep-label">Portfolio → Roadmap</span></div>
-        <div class="int-ep"><span class="ep-method post">POST</span><span class="ep-path">/api/sn_spm/demand/{id}</span><span class="ep-label">Update Capability Need status</span></div>
-      </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-title">AI generates the code</div>
+      <div class="step-desc">Claude writes the integration, tests it, handles errors, and suggests improvements — in seconds. You review, steer, and ship.</div>
     </div>
-
-    <!-- Jira Align -->
-    <div class="int-card" style="--int-color:#b44dff">
-      <div class="int-logo">Jira Align</div>
-      <div class="int-type">SAFe Portfolio · BOOST² Initiatives + Value Streams</div>
-      <div class="int-desc">Maps Jira Align Epics, Capabilities, and Value Streams to their BOOST² counterparts. Pulls strategic themes as input to Strategic Business Outcomes. Bi-directional: BOOST² Capability Needs can generate Jira Align Epics automatically via Claude-generated workflow.</div>
-
-      <div class="code-mini">
-        <div><span class="cm-comment">// Claude-generated stub — Teams 01 & 07 own this</span></div>
-        <div><span class="cm-fn">export async function</span> <span style="color:var(--cyan)">syncJiraAlignValueStreams</span>() {</div>
-        <div>&nbsp;&nbsp;<span class="cm-key">const</span> vStreams = <span class="cm-key">await</span> jiraAlign.<span class="cm-fn">get</span>(<span class="cm-str">'/value-streams'</span>);</div>
-        <div>&nbsp;&nbsp;<span class="cm-key">const</span> epics = <span class="cm-key">await</span> jiraAlign.<span class="cm-fn">get</span>(<span class="cm-str">'/epics'</span>, {</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;params: { programId: PROGRAM_ID, state: <span class="cm-str">'active'</span> }</div>
-        <div>&nbsp;&nbsp;});</div>
-        <div>&nbsp;&nbsp;<span class="cm-key">return</span> {</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;valueStreams: vStreams.<span class="cm-fn">map</span>(<span class="cm-fn">toBoost2ValueStream</span>),</div>
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;initiatives: epics.<span class="cm-fn">map</span>(<span class="cm-fn">toBoost2Initiative</span>)</div>
-        <div>&nbsp;&nbsp;};</div>
-        <div>}</div>
-      </div>
-
-      <div class="int-endpoints">
-        <div class="int-ep"><span class="ep-method get">GET</span><span class="ep-path">/api/v2/value-streams</span><span class="ep-label">Value Streams</span></div>
-        <div class="int-ep"><span class="ep-method get">GET</span><span class="ep-path">/api/v2/epics</span><span class="ep-label">Epics → Initiatives</span></div>
-        <div class="int-ep"><span class="ep-method get">GET</span><span class="ep-path">/api/v2/strategic-themes</span><span class="ep-label">Themes → Outcomes</span></div>
-        <div class="int-ep"><span class="ep-method post">POST</span><span class="ep-path">/api/v2/epics</span><span class="ep-label">Create Epic from Capability Need</span></div>
-      </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-title">Merge, publish, celebrate</div>
+      <div class="step-desc">All modules integrate into a shared environment. By 3 PM, the full BOOST² EA tool is live — built by you, powered by AI, ready for the roadmap.</div>
     </div>
-
-    <!-- BOOST² Graph API -->
-    <div class="int-card" style="--int-color:var(--lime)">
-      <div class="int-logo">BOOST² Graph API</div>
-      <div class="int-type">Internal · All metamodel entities + relationships</div>
-      <div class="int-desc">The shared contract all 10 teams build against. Team 09 generates and owns this API using Claude Code — typed endpoints for every BOOST² entity and relationship type. All integration stubs write into and read from this graph. Claude Code validates every team's output against the schema before merge.</div>
-
-      <div class="code-mini">
-        <div><span class="cm-comment">// Auto-generated from BOOST² metamodel schema</span></div>
-        <div><span class="cm-comment">// Team 09 — Claude Code owns regeneration</span></div>
-        <div><span class="cm-key">const</span> endpoints = {</div>
-        <div>&nbsp;&nbsp;<span class="cm-str">'GET /capability-needs'</span>: <span class="cm-fn">listCapabilityNeeds</span>,</div>
-        <div>&nbsp;&nbsp;<span class="cm-str">'GET /value-streams'</span>: <span class="cm-fn">listValueStreams</span>,</div>
-        <div>&nbsp;&nbsp;<span class="cm-str">'POST /relationships'</span>: <span class="cm-fn">createRelationship</span>,</div>
-        <div>&nbsp;&nbsp;<span class="cm-str">'GET /graph/traverse'</span>: <span class="cm-fn">traverseBoost2Graph</span>,</div>
-        <div>&nbsp;&nbsp;<span class="cm-str">'POST /sync/cmdb'</span>: <span class="cm-fn">triggerCMDBSync</span>,</div>
-        <div>&nbsp;&nbsp;<span class="cm-str">'POST /sync/spm'</span>: <span class="cm-fn">triggerSPMSync</span>,</div>
-        <div>&nbsp;&nbsp;<span class="cm-str">'POST /sync/jira-align'</span>: <span class="cm-fn">triggerJiraSync</span></div>
-        <div>};</div>
-      </div>
-
-      <div class="int-endpoints">
-        <div class="int-ep"><span class="ep-method get">GET</span><span class="ep-path">/api/boost2/capability-needs</span><span class="ep-label">All open gaps</span></div>
-        <div class="int-ep"><span class="ep-method get">GET</span><span class="ep-path">/api/boost2/graph/traverse</span><span class="ep-label">Full metamodel graph</span></div>
-        <div class="int-ep"><span class="ep-method post">POST</span><span class="ep-path">/api/boost2/sync/all</span><span class="ep-label">Trigger all integration syncs</span></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
 <!-- TEAMS -->
-<section class="section s-dark" id="teams">
-  <div class="eyebrow" style="color:var(--lime)">The teams</div>
-  <div class="teams-hdr">
-    <h2 class="s-h2 reveal" style="color:var(--white)">10 teams.<br>5 vibe coders each.<br><span style="color:var(--mist);font-size:.7em">One metamodel to rule them all.</span></h2>
-    <p class="teams-note reveal">Each team owns a BOOST² domain and a Claude Code workspace. Integration stubs are pre-seeded. Teams describe intent, Claude generates code, humans steer and ship.</p>
-  </div>
+<section class="section s-deep" id="teams">
+  <div class="eyebrow">The squads</div>
+  <h2 class="s-h2 reveal">Specialised squads.<br><span class="dim">One connected system.</span></h2>
+  <p class="teams-intro reveal">Each team owns a domain of the BOOST² metamodel. Together, they build the whole. Every team has Claude Code as their AI pair programmer from minute one.</p>
 
   <div class="teams-grid reveal">
-    <div class="team-card" style="--tc:var(--c-vs)">
+    <div class="team-card" style="--tc:#3ef5a8">
       <div class="t-num">01</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">Value Streams</div>
-        <div class="t-node">BOOST²: Value Stream · Enables ↕</div>
-        <div class="t-desc">Build the value stream catalogue with end-to-end traceability to capabilities. Owns the Jira Align value stream sync — Claude generates the bi-directional mapping.</div>
-        <div class="t-tags"><span class="t-tag">Jira Align</span><span class="t-tag">BOOST² API</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">End-to-end traceability</div>
       </div>
     </div>
-    <div class="team-card" style="--tc:var(--c-cap)">
+    <div class="team-card" style="--tc:#4d8aff">
       <div class="t-num">02</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">Business Capabilities</div>
-        <div class="t-node">BOOST²: B&T Capability · Hierarchy</div>
-        <div class="t-desc">Hierarchical capability model with heat maps. Co-owns the ServiceNow CMDB connector — CI to capability mapping generated by Claude Code in the first 30 minutes.</div>
-        <div class="t-tags"><span class="t-tag">CMDB stub</span><span class="t-tag">Heat maps</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">Hierarchical capability model</div>
       </div>
     </div>
-    <div class="team-card" style="--tc:var(--c-out)">
+    <div class="team-card" style="--tc:#ffb83e">
       <div class="t-num">03</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">Ambitions & Outcomes</div>
-        <div class="t-node">BOOST²: Strategic Business Outcome</div>
-        <div class="t-desc">Capture and structure Strategic Outcomes linked to Synergies and Capability Needs. Pulls strategic themes from Jira Align as seed data — Claude maps them automatically.</div>
-        <div class="t-tags"><span class="t-tag">Jira Align themes</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">Strategic outcomes & synergies</div>
       </div>
     </div>
-    <div class="team-card" style="--tc:var(--c-tr)">
+    <div class="team-card" style="--tc:#ff4444">
       <div class="t-num">04</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">Trends</div>
-        <div class="t-node">BOOST²: Trend · Impact scoring</div>
-        <div class="t-desc">Trend registry with impact ratings and linkage to Strategic Outcomes. Claude Code generates a web scraper stub for trend ingestion and maps external signals to BOOST² relationships.</div>
-        <div class="t-tags"><span class="t-tag">Trend API</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">Impact ratings & strategic signals</div>
       </div>
     </div>
-    <div class="team-card" style="--tc:var(--c-need)">
+    <div class="team-card" style="--tc:#b44dff">
       <div class="t-num">05</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">Capability Needs</div>
-        <div class="t-node">BOOST²: Capability Need · Central engine</div>
-        <div class="t-desc">The heartbeat of the tool. Gap capture, disposition logic, full traceability. Bi-directional with ServiceNow SPM — a closed SPM demand closes the Capability Need. Most critical team.</div>
-        <div class="t-tags"><span class="t-tag">SPM stub</span><span class="t-tag">Gap engine</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">The heartbeat of the tool</div>
       </div>
     </div>
-    <div class="team-card" style="--tc:var(--c-app)">
+    <div class="team-card" style="--tc:#00e5ff">
       <div class="t-num">06</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">Application Portfolio</div>
-        <div class="t-node">BOOST²: Technology / Application</div>
-        <div class="t-desc">Full app inventory with Enhance/Maintain/Retire/New dispositions. Primary owner of the ServiceNow CMDB integration — Claude generates the CI→Application mapper and disposition sync.</div>
-        <div class="t-tags"><span class="t-tag">CMDB owner</span><span class="t-tag">Dispositions</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">App inventory & dispositions</div>
       </div>
     </div>
-    <div class="team-card" style="--tc:var(--c-road)">
+    <div class="team-card" style="--tc:#a8ff3e">
       <div class="t-num">07</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">Roadmap & Initiatives</div>
-        <div class="t-node">BOOST²: Project / Program / Initiative</div>
-        <div class="t-desc">Visual roadmap builder. Owns both the ServiceNow SPM and Jira Align initiative sync — Claude Code generates the dual-connector so Roadmap items stay live-synced with portfolio tools.</div>
-        <div class="t-tags"><span class="t-tag">SPM stub</span><span class="t-tag">Jira Align</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">Visual roadmap builder</div>
       </div>
     </div>
-    <div class="team-card" style="--tc:var(--c-pp)">
+    <div class="team-card" style="--tc:#ff3ea8">
       <div class="t-num">08</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">People & Process</div>
-        <div class="t-node">BOOST²: People · Process (Transformation)</div>
-        <div class="t-desc">Org change impacts and process redesign linked to Capability Need closure. Claude Code generates the change impact assessment module and hooks it into the Transformation container.</div>
-        <div class="t-tags"><span class="t-tag">Change mgmt</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">Change impact & org redesign</div>
       </div>
     </div>
-    <div class="team-card" style="--tc:var(--c-rel)">
+    <div class="team-card" style="--tc:#ffffff">
       <div class="t-num">09</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">Relationships & Graph Engine</div>
-        <div class="t-node">BOOST²: All typed relationships · Schema owner</div>
-        <div class="t-desc">The most technically critical team. Generates and owns the BOOST² Graph API. Claude Code produces the full typed schema from the metamodel, validates all team outputs at merge, and runs the integration test suite.</div>
-        <div class="t-tags"><span class="t-tag">Schema owner</span><span class="t-tag">All APIs</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">The connective tissue</div>
       </div>
     </div>
-    <div class="team-card" style="--tc:var(--c-ux)">
+    <div class="team-card" style="--tc:#ffb83e">
       <div class="t-num">10</div>
-      <div class="t-info">
+      <div class="t-body">
         <div class="t-name">Visualisation & UX</div>
-        <div class="t-node">Canvas · Dashboards · Demo layer</div>
-        <div class="t-desc">The face of everything. Interactive BOOST² canvas, executive dashboards, heat maps, and the integration status panel showing live CMDB/SPM/Jira Align sync state. Claude generates the UI components from design descriptions.</div>
-        <div class="t-tags"><span class="t-tag">Canvas</span><span class="t-tag">Integration UI</span><span class="t-tag">5 people</span></div>
+        <div class="t-role">The face of everything</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SCHEDULE -->
-<section class="section s-deep" id="schedule">
+<section class="section s-panel" id="schedule">
   <div class="eyebrow">The day</div>
-  <h2 class="s-h2 reveal">Jun 23 — <span class="lime">7 hours.</span><br><span class="dim">5 phases. Ship it.</span></h2>
+  <h2 class="s-h2 reveal">June 23 &mdash; <span class="lime">8 hours.</span><br><span class="dim">5 phases. Ship it.</span></h2>
 
-  <div class="sched-wrap">
-    <div class="sched-aside reveal">
-      <div class="sched-badge">Tue Jun 23 · 2025</div>
-      <p>Each phase has a concrete output. Team 09 locks the schema at 8:00 — nothing integrates without it. Claude Code is live from minute one.</p>
-      <br>
-      <p style="color:#4a4a6a">Integration sandboxes (ServiceNow dev, Jira Align sandbox) are pre-provisioned. No waiting on access requests.</p>
+  <div class="timeline reveal">
+    <div class="tl-item">
+      <div class="tl-time">6:00 AM</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-phase">Phase 1 · 30 min</div>
+        <div class="tl-title">Kickoff & Alignment</div>
+        <div class="tl-desc">All-hands brief. Teams confirm their domain and goals. AI workspaces open. Everyone starts from the same page.</div>
+        <span class="tl-out">Output: Teams aligned &amp; ready to build</span>
+      </div>
     </div>
-
-    <div class="timeline reveal">
-      <div class="tl-item">
-        <div class="tl-time">8:00 AM</div>
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-phase">Phase 1 · 30 min</div>
-          <div class="tl-title">Kickoff & Schema Lock</div>
-          <div class="tl-desc">All-hands brief. Team 09 presents the Claude-generated BOOST² Graph API schema. All teams confirm their entity contracts. Integration stubs are cloned. Claude Code workspaces opened.</div>
-          <div class="tl-tools"><span class="tl-tool">Claude Code</span><span class="tl-tool">GitHub</span><span class="tl-tool">BOOST² schema v1</span></div>
-          <span class="tl-tag">Output: Schema agreed · Sandboxes confirmed · Teams go</span>
-        </div>
+    <div class="tl-item">
+      <div class="tl-time">6:30 AM</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-phase">Phase 2 · 2h 45min</div>
+        <div class="tl-title">Build Sprint</div>
+        <div class="tl-desc">All 10 teams build in parallel. Claude Code generates and validates. Ideas become working software, fast.</div>
+        <span class="tl-out">Output: 10 working modules</span>
       </div>
-      <div class="tl-item">
-        <div class="tl-time">8:30 AM</div>
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-phase">Phase 2 · 2 hrs</div>
-          <div class="tl-title">Parallel Vibe Build</div>
-          <div class="tl-desc">All 10 teams vibe-code their domain module. Integration teams (01, 02, 05, 06, 07) prompt Claude Code to extend stubs into working connectors against the sandboxes. Team 10 builds UI shell.</div>
-          <div class="tl-tools"><span class="tl-tool">Claude Code</span><span class="tl-tool">SN Dev Instance</span><span class="tl-tool">Jira Align Sandbox</span></div>
-          <span class="tl-tag">Output: 10 working modules · Stubs → live connectors</span>
-        </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">9:30 AM</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-phase">Phase 3 · 2h 30min</div>
+        <div class="tl-title">Integration Sprint</div>
+        <div class="tl-desc">Modules come together into one connected system. AI validates everything at merge. Scope hard-cut at noon.</div>
+        <span class="tl-out">Output: Full BOOST² flow, all connections live</span>
       </div>
-      <div class="tl-item">
-        <div class="tl-time">10:30 AM</div>
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-phase">Phase 3 · 2 hrs</div>
-          <div class="tl-title">Integration Sprint + AI Validation</div>
-          <div class="tl-desc">Modules wire to Team 09's graph engine. Claude Code validates each team's output against the BOOST² schema before merge. AI-generated integration tests run automatically on every PR. Scope hard-cut at noon.</div>
-          <div class="tl-tools"><span class="tl-tool">Claude Code review</span><span class="tl-tool">AI test suite</span><span class="tl-tool">BOOST² graph</span></div>
-          <span class="tl-tag">Output: Full BOOST² flow · All 3 integrations live</span>
-        </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">12:30 PM</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-phase">Phase 4 · 1h</div>
+        <div class="tl-title">Polish &amp; Publish</div>
+        <div class="tl-desc">Bug fixes, UI cleanup, demo rehearsal. The tool is published to a shared environment accessible to the entire EA practice.</div>
+        <span class="tl-out">Output: Live published tool</span>
       </div>
-      <div class="tl-item">
-        <div class="tl-time">12:30 PM</div>
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-phase">Phase 4 · 1.5 hrs</div>
-          <div class="tl-title">Polish, Publish & Rehearse</div>
-          <div class="tl-desc">Claude Code writes the final publish pipeline. Tool is deployed to the shared environment. Teams rehearse the 5-min demo: Trend → Outcome → Capability Need → SPM Initiative → CMDB app disposition.</div>
-          <div class="tl-tools"><span class="tl-tool">Claude Code deploy</span><span class="tl-tool">ea-hack.nationalgrid.internal</span></div>
-          <span class="tl-tag">Output: Live published tool · Demo rehearsed</span>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-time">3:00 PM</div>
-        <div class="tl-dot"></div>
-        <div class="tl-body">
-          <div class="tl-phase">Phase 5 · 1 hr</div>
-          <div class="tl-title">Showcase & Celebrate 🏁</div>
-          <div class="tl-desc">Live demo of the full BOOST² tool with working CMDB, SPM, and Jira Align data. Judge Q&A. Best integration, best UX, best vibe coder awards. Retrospective: what goes into the real roadmap.</div>
-          <span class="tl-tag">4:00 PM — Wrap · Ship · What's next</span>
-        </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">1:30 PM</div>
+      <div class="tl-dot"></div>
+      <div class="tl-body">
+        <div class="tl-phase">Phase 5 · 1h 30min</div>
+        <div class="tl-title">Showcase &amp; Celebrate 🏁</div>
+        <div class="tl-desc">Each team demos their module. Judges ask questions. Awards presented. Retrospective: what enters the roadmap. Wrap at 3 PM.</div>
+        <span class="tl-out">3:00 PM — Ship · Celebrate · What's next</span>
       </div>
     </div>
   </div>
 </section>
 
 <!-- WHY JOIN -->
-<section class="section s-panel" id="why">
+<section class="section s-void" id="why">
   <div class="eyebrow">Why join</div>
-  <h2 class="s-h2 reveal">This is how <span class="lime">great engineers</span><br><span class="dim">work in 2025.</span></h2>
+  <h2 class="s-h2 reveal">This is how <span class="lime">great engineers</span><br><span class="dim">work in 2026.</span></h2>
 
   <div class="why-grid reveal">
     <div class="why-card">
       <div class="why-icon">🤖</div>
-      <div class="why-title">Vibe code with Claude</div>
-      <div class="why-body">Every participant gets Claude Code as their pair programmer. Describe architecture intent in plain language. Get production-grade TypeScript back in seconds. Steer, don't type.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🔗</div>
-      <div class="why-title">Real integrations, same day</div>
-      <div class="why-body">ServiceNow CMDB, SPM, and Jira Align — not mocked, not pretend. Your Claude-generated connector will talk to real sandbox APIs by 10:30 AM.</div>
+      <div class="why-title">AI as your partner</div>
+      <div class="why-body">Every participant gets Claude Code as their pair programmer. Describe your intent in plain language and watch production-quality work appear. You steer — AI builds.</div>
     </div>
     <div class="why-card">
       <div class="why-icon">🧭</div>
       <div class="why-title">Make EA actually work</div>
-      <div class="why-body">The BOOST² metamodel has always been the right framework. For the first time, we're building the tool that implements it — with live data, live relationships, live gaps.</div>
+      <div class="why-body">BOOST² has always been the right framework. For the first time, we're building the tool that makes it real — with live data, live relationships, and live gaps visible to everyone.</div>
     </div>
     <div class="why-card">
       <div class="why-icon">🚀</div>
       <div class="why-title">Ship into the real roadmap</div>
-      <div class="why-body">The strongest modules from June 23rd go into the official EA tooling roadmap. Your Claude-generated connector may become production infrastructure.</div>
+      <div class="why-body">The strongest modules from June 23rd go directly into the official EA tooling roadmap. What you build that day may become production infrastructure.</div>
     </div>
     <div class="why-card">
       <div class="why-icon">🏆</div>
-      <div class="why-title">Best vibe coder awards</div>
-      <div class="why-body">Best integration, best UX, best BOOST² coverage — and the inaugural "Best Claude prompt of the day" trophy. Yes, it's a real category.</div>
+      <div class="why-title">Win real recognition</div>
+      <div class="why-body">Best Integration, Best UX, Best BOOST² Coverage, and the inaugural Best Claude Prompt of the Day award. Yes, it's a real category.</div>
     </div>
     <div class="why-card">
       <div class="why-icon">🧠</div>
       <div class="why-title">Level up your AI fluency</div>
-      <div class="why-body">Seven hours of intensive Claude Code use in a real integration context accelerates AI fluency faster than any training course. Walk out a different engineer.</div>
+      <div class="why-body">Seven hours of building with Claude in a real context accelerates your AI fluency faster than any course. You'll walk out a different engineer.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔗</div>
+      <div class="why-title">Build something that matters</div>
+      <div class="why-body">National Grid's transformation is one of the most consequential in the company's history. The architecture that runs it starts here, on June 23rd.</div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section" id="register">
+<section class="cta-section s-deep" id="register">
   <div class="cta-bg"></div>
-  <div class="eyebrow">Ready to vibe?</div>
+  <div class="eyebrow">Ready?</div>
   <h2 class="cta-h2">
     Don't watch AI<br>
     <span class="cta-lime">change everything.</span>
-    <span class="cta-mist">Be the one who builds it.</span>
+    <span class="cta-italic">Be the one who builds it.</span>
   </h2>
-  <p class="cta-sub">50 spots. 10 teams. Claude Code in every terminal. Integration stubs pre-loaded. June 23rd — 8 AM EST. First come, first squad.</p>
+  <p class="cta-sub">50 spots. AI in every workspace. June 23rd, 6 AM EST. First come, first squad.</p>
   <div class="cta-btns">
-    <a href="mailto:hackathon@nationalgrid.com?subject=BOOST%C2%B2%20Build%20Day%20%E2%80%94%20Registration&body=Name%3A%0ADepartment%3A%0ARole%2FSkills%3A%0APreferred%20Team%20(1-10)%3A%0AHave%20you%20used%20Claude%20Code%20before%3F" class="btn-cta">Register via Email</a>
-    <a href="#vibe" class="btn-cta-ghost">See how we build</a>
+    <a href="mailto:Lakshmanan.velayutham@nationalgrid.com?subject=BOOST%C2%B2%20Build%20Day%20%E2%80%94%20Registration&body=Name%3A%0ADepartment%3A%0ARole%3A%0APreferred%20Team%20(1-10)%3A" class="btn-cta">Register via Email</a>
+    <a href="#what" class="btn-cta-ghost">Learn More</a>
   </div>
-  <p style="margin-top:28px;font-size:10px;color:#2a2a3a;position:relative;letter-spacing:.1em">
-    JUNE 23, 2025 · 8:00 AM – 4:00 PM EST · NATIONAL GRID IT
+  <p class="contact-line">
+    Questions? Contact &nbsp;
+    <a href="mailto:Lakshmanan.velayutham@nationalgrid.com">Lakshmanan Velayutham</a>,&nbsp;
+    <a href="mailto:Anoop.Khurana@nationalgrid.com">Anoop Khurana</a>, or&nbsp;
+    <a href="mailto:Sana.FathallahShaykh@nationalgrid.com">Sana Fathallah Shaykh</a>
   </p>
 </section>
 
 <footer>
   <div class="footer-logo">BOOST² BUILD DAY</div>
   <span>National Grid · Information Technology</span>
-  <span>10 teams · 3 integrations · ∞ Claude tokens</span>
+  <span>June 23, 2026 · 6:00 AM – 3:00 PM EST</span>
 </footer>
 
 <script>
-// cursor
-const cur = document.getElementById('cur');
-document.addEventListener('mousemove', e => {
-  cur.style.left = e.clientX + 'px';
-  cur.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a,button,.team-card,.int-card,.pipe-step,.why-card,.build-card').forEach(el => {
-  el.addEventListener('mouseenter', () => cur.classList.add('active'));
-  el.addEventListener('mouseleave', () => cur.classList.remove('active'));
-});
-
 // scroll reveal
 const obs = new IntersectionObserver(entries => {
   entries.forEach((e, i) => {
     if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('on'), i * 50);
+      setTimeout(() => e.target.classList.add('on'), i * 60);
       obs.unobserve(e.target);
     }
   });
-}, { threshold: 0.07 });
+}, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-// terminal typewriter on scroll into view
-const termObs = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const lines = entry.target.querySelectorAll('.term-line, .t-ok, .t-comment, .t-out, .t-dim, .t-err');
-      lines.forEach((line, i) => {
-        line.style.opacity = '0';
-        setTimeout(() => { line.style.transition = 'opacity .3s'; line.style.opacity = '1'; }, i * 120);
-      });
-      termObs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.terminal').forEach(t => termObs.observe(t));
 </script>
 </body>
 </html>
