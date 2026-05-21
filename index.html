@@ -285,6 +285,49 @@ nav{
 .why-title{font-weight:700;font-size:16px;color:var(--white);margin-bottom:10px}
 .why-body{font-size:12px;color:var(--mist);line-height:1.85}
 
+/* ── STATEMENT BANNER ── */
+.statement-banner{
+  border:1px solid rgba(168,255,62,.2);
+  background:rgba(168,255,62,.04);
+  padding:36px 40px;
+  margin:0 0 56px;
+  position:relative;
+}
+.statement-banner::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:4px;background:var(--lime);
+}
+.statement-text{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-size:clamp(18px,2.2vw,24px);
+  line-height:1.6;
+  color:var(--paper);
+}
+
+/* ── HYPE CLOSER ── */
+.hype-closer{
+  margin-top:64px;
+  text-align:center;
+  padding:56px 40px;
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.hype-line{
+  font-family:'Space Mono',monospace;
+  font-weight:700;
+  font-size:clamp(20px,3vw,34px);
+  line-height:1.3;
+  color:var(--white);
+  margin-bottom:16px;
+}
+.hype-sub{
+  font-family:'Instrument Serif',serif;
+  font-style:italic;
+  font-size:clamp(16px,2vw,22px);
+  color:var(--mist);
+}
+
 /* ── CTA ── */
 .cta-section{
   padding:120px 48px;text-align:center;
@@ -394,8 +437,7 @@ footer{
     </h1>
 
     <p class="hero-sub">
-      50 architects and engineers. One day. One mission.<br>
-      We're building a <strong>living Enterprise Architecture tool</strong> for National Grid IT — with real data, real connections, and AI as our pair programmer.
+      Imagine shipping real software in a day — with AI doing the heavy lifting while <strong>you think at the architecture level</strong>. This is your chance to experience the future of building, right now, at National Grid IT.
     </p>
 
     <div class="hero-meta">
@@ -642,40 +684,51 @@ footer{
 
 <!-- WHY JOIN -->
 <section class="section s-void" id="why">
-  <div class="eyebrow">Why join</div>
-  <h2 class="s-h2 reveal">This is how <span class="lime">great engineers</span><br><span class="dim">work in 2026.</span></h2>
+  <div class="eyebrow">What's in it for you</div>
+  <h2 class="s-h2 reveal">You won't just attend.<br><span class="lime">You'll be part of</span><br><span class="dim">what comes next.</span></h2>
+
+  <!-- big statement banner -->
+  <div class="statement-banner reveal">
+    <div class="statement-text">On June 23rd, you'll do something most engineers only read about — <span class="lime">build production software with AI as your co-creator</span>, on a problem that actually matters, in a single day.</div>
+  </div>
 
   <div class="why-grid reveal">
     <div class="why-card">
-      <div class="why-icon">🤖</div>
-      <div class="why-title">AI as your partner</div>
-      <div class="why-body">Every participant gets Claude Code as their pair programmer. Describe your intent in plain language and watch production-quality work appear. You steer — AI builds.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🧭</div>
-      <div class="why-title">Make EA actually work</div>
-      <div class="why-body">BOOST² has always been the right framework. For the first time, we're building the tool that makes it real — with live data, live relationships, and live gaps visible to everyone.</div>
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Experience vibe coding — for real</div>
+      <div class="why-body">Describe what you want to build. Watch it appear. Claude Code turns your architecture thinking into working software in seconds — not sprints. You'll never look at development the same way again.</div>
     </div>
     <div class="why-card">
       <div class="why-icon">🚀</div>
-      <div class="why-title">Ship into the real roadmap</div>
-      <div class="why-body">The strongest modules from June 23rd go directly into the official EA tooling roadmap. What you build that day may become production infrastructure.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🏆</div>
-      <div class="why-title">Win real recognition</div>
-      <div class="why-body">Best Integration, Best UX, Best BOOST² Coverage, and the inaugural Best Claude Prompt of the Day award. Yes, it's a real category.</div>
+      <div class="why-title">Your work ships into production</div>
+      <div class="why-body">This isn't a hackathon that disappears on Monday. The strongest modules you build go directly into National Grid IT's official EA tooling roadmap. You could ship something thousands of colleagues use.</div>
     </div>
     <div class="why-card">
       <div class="why-icon">🧠</div>
-      <div class="why-title">Level up your AI fluency</div>
-      <div class="why-body">Seven hours of building with Claude in a real context accelerates your AI fluency faster than any course. You'll walk out a different engineer.</div>
+      <div class="why-title">Level up faster than any course</div>
+      <div class="why-body">Eight hours of hands-on AI-first building in a real enterprise context does more for your skills than any training programme. You'll walk out genuinely fluent in a new way of working.</div>
     </div>
     <div class="why-card">
-      <div class="why-icon">🔗</div>
-      <div class="why-title">Build something that matters</div>
-      <div class="why-body">National Grid's transformation is one of the most consequential in the company's history. The architecture that runs it starts here, on June 23rd.</div>
+      <div class="why-icon">🌍</div>
+      <div class="why-title">Be part of something historic</div>
+      <div class="why-body">National Grid is powering the UK and US energy transition. You'll be the architect who helped make that transformation visible — connecting strategy to systems at the scale of a national grid.</div>
     </div>
+    <div class="why-card">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">Get recognised for it</div>
+      <div class="why-body">Best Integration, Best UX, Best BOOST² Coverage, and the inaugural Best Claude Prompt of the Day — awarded in front of the whole EA practice. Yes, that last one is a real category.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <div class="why-title">Build with the best in the room</div>
+      <div class="why-body">50 of National Grid IT's sharpest architects and engineers, in the same room, solving the same problem. The connections you make on June 23rd will outlast the tool you build.</div>
+    </div>
+  </div>
+
+  <!-- pull quote / hype closer -->
+  <div class="hype-closer reveal">
+    <div class="hype-line">The engineers who learn to work <span class="lime">with AI</span> will define what's possible next.</div>
+    <div class="hype-sub">June 23rd is your head start.</div>
   </div>
 </section>
 
@@ -684,11 +737,11 @@ footer{
   <div class="cta-bg"></div>
   <div class="eyebrow">Ready?</div>
   <h2 class="cta-h2">
-    Don't watch AI<br>
-    <span class="cta-lime">change everything.</span>
-    <span class="cta-italic">Be the one who builds it.</span>
+    Your seat at the<br>
+    <span class="cta-lime">future of building</span>
+    <span class="cta-italic">is one click away.</span>
   </h2>
-  <p class="cta-sub">50 spots. AI in every workspace. June 23rd, 6 AM EST. First come, first squad.</p>
+  <p class="cta-sub">50 spots. AI in every workspace. June 23rd, 6 AM EST. Come ready to build something real.</p>
   <div class="cta-btns">
     <a href="mailto:Lakshmanan.velayutham@nationalgrid.com?subject=BOOST%C2%B2%20Build%20Day%20%E2%80%94%20Registration&body=Name%3A%0ADepartment%3A%0ARole%3A%0APreferred%20Team%20(1-10)%3A" class="btn-cta">Register via Email</a>
     <a href="#what" class="btn-cta-ghost">Learn More</a>
